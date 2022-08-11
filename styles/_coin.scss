@@ -1,0 +1,25 @@
+.coin {
+
+	&-list {
+		width: 480px;
+		max-height: 70vh;
+		overflow: auto;
+	}
+	&-item {
+		display: flex; padding: 10px; align-items: center;
+
+		.icon {
+			$size: 30px;
+
+			width: $size; height: $size;
+			margin-right: 20px;
+		}
+		.name {
+			flex: 1;
+		}
+		.symbol {
+
+		}
+	}
+
+}
