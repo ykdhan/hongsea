@@ -1,12 +1,13 @@
 export const state = () => ({
-	coins: []
+	coin: {},
+	coins: [],
 })
 
 export const mutations = {
 	ADD_COIN(state, coin) {
 		state.coins.push(coin)
 	},
-	UPDATE_COINS(state) {
-		state.coins = state
+	SELECT_COIN(state, symbol) {
+		state.coin = state.coins.filter((c) => c.symbol === symbol)[0]
 	}
 }

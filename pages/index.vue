@@ -1,7 +1,7 @@
 <template>
 	<div class="app">
-		<h1>Upbit</h1>
 		<CoinList />
+		<CoinDetail />
 	</div>
 </template>
 
