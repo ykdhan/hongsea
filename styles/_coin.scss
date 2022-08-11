@@ -2,32 +2,48 @@ $icon-size: 24px;
 
 .coin {
 	&-list {
-		width: 380px; max-height: 70vh; margin-right: 40px;
-		background-color: $c_white; border-radius: $border-radius;
+		width: 320px; height: 100%; margin-right: $padding;
 		overflow: auto;
+		@include box;
 	}
 	&-item {
 		display: flex; align-items: center;
-		width: 100%; padding: 10px; box-sizing: border-box;
+		width: 100%; padding: calc($padding / 2) $padding; box-sizing: border-box;
 		margin: 10px 0;
-		color: $c_black;
 		cursor: pointer;
 
 		.icon {
 			width: $icon-size; height: $icon-size;
-			margin-right: 20px;
+			margin-right: $padding;
 		}
 		.name {
 			flex: 1; text-align: left;
+			font-size: 14px; color: $c_black;
 		}
 		.symbol {
-
+			font-size: 14px; color: $c_gray;
 		}
 	}
 
 	&-detail {
 		flex: 1;
-		background-color: $c_white; border-radius: $border-radius;
+		@include box;
+
+		.info {
+			padding: $padding; text-align: center;
+
+			.icon {
+				width: $icon-size * 1.5; height: $icon-size * 1.5;
+				margin-bottom: $padding;
+			}
+			.name {
+				font-size: 26px;
+			}
+			.symbol {
+				margin-top: calc($padding / 2);
+				font-size: 16px;
+			}
+		}
 	}
 
 }

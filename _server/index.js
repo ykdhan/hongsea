@@ -33,7 +33,7 @@ request(market_all, (error, response, body) => {
     updateDB(JSON.parse(body))
 })
 
-const uri = 'mongodb://localhost/krypt'
+const uri = 'mongodb://localhost/hongsea'
 
 mongoose.connect(uri, {
     useNewUrlParser: true,
@@ -41,7 +41,7 @@ mongoose.connect(uri, {
 
 const connection = mongoose.connection;
 connection.once("open", () => {
-    console.log("Krypt MongoDB connected!");
+    console.log("Hongsea MongoDB connected!");
 });
 
 const Schema = mongoose.Schema;
@@ -68,13 +68,15 @@ const Coin = mongoose.model("Coin", coinSchema)
 
 function updateDB(data) {
     Coin.deleteMany({}, () => {
+        const added = []
         for (let i = 0; i < data.length; i++) {
-            const symbol = data[i].market
-            if (symbol.includes('KRW-'))
-                Coin.create({
-                    symbol: symbol.substring(4),
-                    name: data[i].korean_name,
-                })
+            const market = data[i].market
+            const symbol = market.split('-')[1]
+            const name = data[i].korean_name
+            if (!added.includes(symbol)) {
+                added.push(symbol)
+                Coin.create({ symbol, name })
+            }
         }
     })
 }

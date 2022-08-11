@@ -1,0 +1,5 @@
+@mixin box {
+	border-radius: $border-radius;
+	background-color: $c_white;
+	box-shadow: 3px 2px 12px 3px rgba(0, 0, 0, 0.03);
+}
