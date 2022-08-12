@@ -5,7 +5,9 @@
 			<div class="name">{{$store.state.coin.name}}</div>
 			<div class="symbol">{{$store.state.coin.symbol}}</div>
 		</div>
-		<div class="body"></div>
+		<div v-if="Object.keys($store.state.coin).length > 0" class="body">
+			<ChatList :coin="$store.state.coin" />
+		</div>
 	</div>
 </template>
 

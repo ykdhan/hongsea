@@ -64,7 +64,33 @@ const coinSchema = new Schema(
     { timestamps: { currentTime: () => Math.floor(Date.now() / 1000) } }
 );
 
+const chatSchema = new Schema(
+    {
+        symbol: {
+            type: String,
+            required: true,
+            unique: true,
+            createdAt: Number,
+            updatedAt: Number
+        },
+        text: {
+            type: String,
+            required: true,
+            createdAt: Number,
+            updatedAt: Number
+        },
+        likes: {
+            type: Number,
+			default: 0,
+            createdAt: Number,
+            updatedAt: Number
+        },
+    },
+    { timestamps: { currentTime: () => Math.floor(Date.now() / 1000) } }
+);
+
 const Coin = mongoose.model("Coin", coinSchema)
+const Chat = mongoose.model("Chat", chatSchema)
 
 function updateDB(data) {
     Coin.deleteMany({}, () => {
@@ -88,6 +114,20 @@ app.route('/coins').get((req, res) => {
         })
         .catch((err) => res.status(400).json("Error: " + err));
 });
+
+app.route('/chat:symbol').get((req, res) => {
+	Chat.find({ symbol: req.params.symbol })
+		.then((coins) => {
+			res.json(coins)
+		})
+		.catch((err) => res.status(400).json("Error: " + err));
+})
+
+app.route('/chat/create').post((req, res) => {
+	const symbol = req.params.symbol
+	const text = req.body.text
+	Chat.create({ symbol, text })
+})
 
 app.listen(port, () => {
     console.log(`Server ON - port ${port}`);
