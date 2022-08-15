@@ -44,6 +44,14 @@ $icon-size: 24px;
 				font-size: 16px;
 			}
 		}
+		.body {
+			padding: $padding;
+
+			input[type='textbox'] {
+				display: block;
+				width: 100%; padding: $input-padding;
+			}
+		}
 	}
 
 }

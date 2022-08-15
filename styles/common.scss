@@ -13,6 +13,11 @@ html, body {
 	overflow: hidden;
 }
 
+a, button, input {
+	font-size: 15px; line-height: 1.2;
+	box-sizing: border-box;
+}
+
 .app {
 	display: flex; align-items: flex-start;
 	margin: 0 auto; width: 100%; max-width: 1140px; height: 100vh;

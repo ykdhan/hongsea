@@ -1,6 +1,6 @@
 <template>
 	<div class="chat-list">
-		<input @keypress="addChat">
+		<input type="textbox" @keypress="addChat">
 		<ChatItem v-for="chat in $store.state.chats" :key="chat.id" :chat="chat" />
 	</div>
 </template>
