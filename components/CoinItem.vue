@@ -1,5 +1,5 @@
 <template>
-	<button class="coin-item" @click="selectCoin(coin.symbol)">
+	<button class="coin-item" :class="{'selected': $store.state.coin && ($store.state.coin.symbol === coin.symbol)}" @click="selectCoin(coin.symbol)">
 		<img class="icon" :alt="coin.name" :src="icon" />
 		<div class="name">{{coin.name}}</div>
 		<div class="symbol">{{coin.symbol}}</div>

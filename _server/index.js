@@ -4,7 +4,7 @@ const mongoose = require("mongoose")
 const request = require('request')
 const uuidv4 = require("uuid/v4")
 const sign = require('jsonwebtoken').sign
-require("dotenv").config({ path: "../config.env" })
+require("dotenv").config({ path: "../.env" })
 
 const app = express()
 const port = process.env.NODE_PORT

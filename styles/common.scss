@@ -3,13 +3,17 @@
 @import './variables';
 @import './mixins';
 
+// common
+@import './layout';
+
 // components
 @import './coin';
 
 
 html, body {
-	font-family: 'Noto Sans KR', sans-serif; font-size: 14px; font-weight: 400; line-height: 1.2;
-	background-color: #fafafa;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 14px; font-weight: 400; line-height: 1.2;
+	color: $c_black_400; background-color: $c_white_400;
 	overflow: hidden;
 }
 

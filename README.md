@@ -1,4 +1,4 @@
-# HONGSEA : 코인 커뮤니티
+# HONGSEA : 코인챗
 
 ## Setup
 
@@ -6,7 +6,7 @@
 # install dependencies
 $ npm install
 
-# serve with hot reload at localhost:3000
+# serve with hot reload [port 3538]
 $ npm run dev
 
 # build for production and launch server
@@ -22,11 +22,15 @@ $ brew install mongodb/brew/mongodb-community@5.0
 $ brew services start mongodb-community@5.0
 $ cd server && npm i
 
-# api server start
+# api server start [port 5050]
 $ cd server && npm run start
 ```
 
-Node Ver. 16
+## Versions
+Node v.16
+
+## Config
+`.env`
 
 ## Special Directories
 
@@ -65,3 +69,12 @@ More information about the usage of this directory in [the documentation](https:
 ### `store`
 
 This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
+
+
+
+## coming up
+1. user login
+2. favorite coins
+3. active users
+4. live news, price
+5. mobile design

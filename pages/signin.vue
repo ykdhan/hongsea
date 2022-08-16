@@ -1,7 +1,6 @@
 <template>
 	<div class="app">
-		<CoinList />
-		<CoinDetail />
+		<div>sign in</div>
 	</div>
 </template>
 
@@ -9,7 +8,7 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-	name: 'IndexPage'
+	name: 'SignInPage',
 })
 </script>
 

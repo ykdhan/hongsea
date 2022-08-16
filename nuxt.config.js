@@ -1,7 +1,8 @@
+require('dotenv').config()
+
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'hongsea',
+    title: '홍씨 : 우리들의 코인 생각',
     htmlAttrs: {
       lang: 'ko',
     },
@@ -25,8 +26,8 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/typescript
-    '@nuxt/typescript-build',
+	'@nuxtjs/dotenv',
+    '@nuxt/typescript-build',	// https://go.nuxtjs.dev/typescript
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -34,4 +35,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  server: {
+	port: process.env.DEV_PORT,
+	host: process.env.HOST
+  }
 }
