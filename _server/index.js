@@ -30,6 +30,7 @@ const market_all = {
 
 request(market_all, (error, response, body) => {
     if (error) throw new Error(error)
+	mongoose.connection.db.dropDatabase()
     updateDB(JSON.parse(body))
 })
 
@@ -43,6 +44,13 @@ const connection = mongoose.connection;
 connection.once("open", () => {
     console.log("Hongsea MongoDB connected!");
 });
+
+const randomInteger = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+const randomString = () => {
+	return Math.random().toString(36).substring(2, randomInteger(6, 10));
+}
 
 const Schema = mongoose.Schema;
 const coinSchema = new Schema(
@@ -69,7 +77,6 @@ const chatSchema = new Schema(
         symbol: {
             type: String,
             required: true,
-            unique: true,
             createdAt: Number,
             updatedAt: Number
         },
@@ -93,6 +100,7 @@ const Coin = mongoose.model("Coin", coinSchema)
 const Chat = mongoose.model("Chat", chatSchema)
 
 function updateDB(data) {
+	Chat.deleteMany({}, () => {})
     Coin.deleteMany({}, () => {
         const added = []
         for (let i = 0; i < data.length; i++) {
@@ -115,8 +123,8 @@ app.route('/coins').get((req, res) => {
         .catch((err) => res.status(400).json("Error: " + err));
 });
 
-app.route('/chat:symbol').get((req, res) => {
-	Chat.find({ symbol: req.params.symbol })
+app.route('/chat').get((req, res) => {
+	Chat.find({ symbol: req.query.symbol })
 		.then((coins) => {
 			res.json(coins)
 		})
@@ -124,7 +132,7 @@ app.route('/chat:symbol').get((req, res) => {
 })
 
 app.route('/chat/create').post((req, res) => {
-	const symbol = req.params.symbol
+	const symbol = req.body.symbol
 	const text = req.body.text
 	Chat.create({ symbol, text })
 })

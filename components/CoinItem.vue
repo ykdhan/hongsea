@@ -8,6 +8,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import axios from 'axios'
+import NODE from '@/const/node'
 
 export default Vue.extend({
 	props: [ 'coin' ],
@@ -15,8 +17,13 @@ export default Vue.extend({
 		return { icon: `https://static.upbit.com/logos/${this.coin.symbol}.png` }
 	},
 	methods: {
-		selectCoin(a: string) {
-			this.$store.commit('SELECT_COIN', a)
+		selectCoin(symbol: string) {
+			this.$store.commit('SELECT_COIN', symbol)
+
+			axios.get(`${NODE.URL}/chat`, { params: { symbol } })
+				.then((res : any) =>  {
+					res.data && this.$store.commit('LOAD_CHATS', res.data)
+				})
 		}
 	}
 })

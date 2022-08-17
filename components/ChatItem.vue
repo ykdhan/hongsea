@@ -1,8 +1,8 @@
 <template>
 	<button class="chat-item">
+		<div class="time">{{new Date(chat.createdAt).getHours() + ':' + new Date(chat.createdAt).getMinutes()}}</div>
 		<div class="text">{{chat.text}}</div>
-		<div class="time">{{chat}}</div>
-		<button>likes</button>
+		<button class="likes">좋아요 {{chat.likes}}</button>
 	</button>
 </template>
 
@@ -11,8 +11,6 @@ import Vue from 'vue'
 
 export default Vue.extend({
 	props: [ 'chat' ],
-	methods: {
-	}
 })
 
 </script>

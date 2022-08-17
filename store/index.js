@@ -1,6 +1,7 @@
 export const state = () => ({
 	coin: {},
 	coins: [],
+	chats: []
 })
 
 export const mutations = {
@@ -9,5 +10,8 @@ export const mutations = {
 	},
 	SELECT_COIN(state, symbol) {
 		state.coin = state.coins.filter((c) => c.symbol === symbol)[0]
+	},
+	LOAD_CHATS(state, chats) {
+		state.chats = chats
 	}
 }

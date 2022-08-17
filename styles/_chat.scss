@@ -1,0 +1,29 @@
+.chat {
+	&-list {
+		flex: 1; overflow: auto;
+		background-color: $c_white_300;
+		border-radius: $border-radius;
+	}
+	&-item {
+		position: relative; display: flex; align-items: center; text-align: left;
+		width: 100%; padding: calc($padding / 2) $padding; box-sizing: border-box;
+		font-size: 15px;
+		margin: 10px 0; overflow: hidden;
+
+		.text {
+			flex: 1;
+		}
+		.time {
+			margin-right: $padding;
+			color: $c_gray_400;
+		}
+		.likes {
+			margin-left: $padding;
+		}
+
+		&:hover, &:focus {
+			background-color: $c_white_300;
+		}
+	}
+
+}
