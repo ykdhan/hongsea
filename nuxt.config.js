@@ -31,7 +31,9 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+	'nuxt-socket-io',
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
@@ -39,5 +41,12 @@ export default {
   server: {
 	port: process.env.DEV_PORT,
 	host: process.env.HOST
+  },
+
+  io: {
+	sockets: [{
+		name: 'chat',
+		url: process.env.HOST + ':' + process.env.SOCKET_PORT
+	}]
   }
 }

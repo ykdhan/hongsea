@@ -1,12 +1,17 @@
+const http = require("http")
 const express = require("express")
 const cors = require("cors")
+const app = express()
+const httpServer = http.createServer(app)
+
+const io = require("socket.io")(httpServer)
 const mongoose = require("mongoose")
 const request = require('request')
 const uuidv4 = require("uuid/v4")
 const sign = require('jsonwebtoken').sign
 require("dotenv").config({ path: "../.env" })
 
-const app = express()
+
 const port = process.env.NODE_PORT
 const access_key = process.env.UPBIT_OPEN_API_ACCESS_KEY
 const secret_key = process.env.UPBIT_OPEN_API_SECRET_KEY
@@ -138,5 +143,23 @@ app.route('/chat/create').post((req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Server ON - port ${port}`);
-});
+    console.log(`Server ON - port ${port}`)
+})
+
+io.on('connection' , function(socket) {
+    console.log('Connect from Client: ' + socket)
+
+    socket.on('chat', function(data){
+        console.log('message from Client: '+data.message)
+
+        const rtnMessage = {
+            message: data.message
+        }
+
+        socket.broadcast.emit('chat', rtnMessage)
+    })
+})
+
+httpServer.listen(process.env.SOCKET_PORT, function() {
+    console.log('SOCKET IO listening port 5051')
+})

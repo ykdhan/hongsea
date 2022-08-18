@@ -13,5 +13,5 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@import '../styles/common.scss';
+@import '@/assets/styles/common.scss';
 </style>
